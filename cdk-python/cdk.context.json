@@ -1,0 +1,37 @@
+{
+  "vpc-provider:account=123456789012:filter.isDefault=true:region=us-east-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-00000000000000000",
+    "vpcCidrBlock": "172.31.0.0/16",
+    "availabilityZones": ["us-east-1a", "us-east-1b"],
+    "publicSubnetIds": ["subnet-00000000000000001", "subnet-00000000000000002"],
+    "publicSubnetNames": ["Public", "Public"],
+    "publicSubnetRouteTableIds": ["rtb-00000000000000001", "rtb-00000000000000002"],
+    "privateSubnetIds": ["subnet-00000000000000003", "subnet-00000000000000004"],
+    "privateSubnetNames": ["Private", "Private"],
+    "privateSubnetRouteTableIds": ["rtb-00000000000000003", "rtb-00000000000000004"],
+    "isolatedSubnetIds": null,
+    "isolatedSubnetNames": null,
+    "isolatedSubnetRouteTableIds": null,
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {"availabilityZone": "us-east-1a", "subnetId": "subnet-00000000000000001", "routeTableId": "rtb-00000000000000001", "cidr": "172.31.0.0/20"},
+          {"availabilityZone": "us-east-1b", "subnetId": "subnet-00000000000000002", "routeTableId": "rtb-00000000000000002", "cidr": "172.31.16.0/20"}
+        ]
+      },
+      {
+        "name": "Private",
+        "type": "Private",
+        "subnets": [
+          {"availabilityZone": "us-east-1a", "subnetId": "subnet-00000000000000003", "routeTableId": "rtb-00000000000000003", "cidr": "172.31.32.0/20"},
+          {"availabilityZone": "us-east-1b", "subnetId": "subnet-00000000000000004", "routeTableId": "rtb-00000000000000004", "cidr": "172.31.48.0/20"}
+        ]
+      }
+    ],
+    "ownerAccountId": "123456789012",
+    "region": null,
+    "vpnGatewayId": null
+  }
+}

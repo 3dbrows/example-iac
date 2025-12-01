@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Web application infrastructure
+
+Resources:
+  MyWebApp:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-005e54dee72cc1d00
+      InstanceType: m3.xlarge  # <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
+      Tags:
+        - Key: Environment
+          Value: production
+        - Key: Service
+          Value: web-app
+        - Key: Name
+          Value: dash
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 1000  # <<<<<<<<<< Try adding VolumeType: gp3 to compare costs
+
+  MyHelloWorldFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: test
+      Runtime: nodejs12.x
+      Handler: exports.test
+      Code:
+        S3Bucket: placeholder-bucket
+        S3Key: placeholder-key
+      Role: arn:aws:ec2:us-east-1:123123123123:instance/i-1231231231
+      MemorySize: 512
+      Tags:
+        - Key: Environment
+          Value: Prod
+
+  MyDatabaseSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: MyDatabaseSecret
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "admin"}'
+        GenerateStringKey: password
+        PasswordLength: 30
+        ExcludeCharacters: '"@/\'
+
+  MyDatabase:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: mysql57-extended
+      Engine: mysql
+      EngineVersion: '5.7.44'
+      DBInstanceClass: db.c5.2xlarge
+      AllocatedStorage: 20
+      MasterUsername: !Sub '{{resolve:secretsmanager:${MyDatabaseSecret}:SecretString:username}}'
+      MasterUserPassword: !Sub '{{resolve:secretsmanager:${MyDatabaseSecret}:SecretString:password}}'
+      DBName: exampledb
+      PubliclyAccessible: false
+      DeletionProtection: false
+      Tags:
+        - Key: Name
+          Value: my-db
