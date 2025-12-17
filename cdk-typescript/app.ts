@@ -25,20 +25,6 @@ class WebAppStack extends Stack {
     Tags.of(instance).add('Service', 'web-app');
     Tags.of(instance).add('Name', 'dash');
 
-    const instance = new ec2.Instance(this, 'MyWebApp', { // duplicate of same ID
-      instanceType: new ec2.InstanceType('m5.2xlarge'), // <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
-      machineImage: ec2.MachineImage.genericLinux({
-        'us-east-1': 'ami-005e54dee72cc1d00',
-      }),
-      blockDevices: [
-        {
-          deviceName: '/dev/xvda',
-          volume: ec2.BlockDeviceVolume.ebs(1000), // <<<<<<<<<< Try adding volumeType: gp3 to compare costs
-        },
-      ],
-      vpc: ec2.Vpc.fromLookup(this, 'VPC', { isDefault: true }),
-    });
-
     const fn = new lambda.Function(this, 'MyHelloWorld', {
       runtime: lambda.Runtime.NODEJS_12_X,
       handler: 'exports.test',
