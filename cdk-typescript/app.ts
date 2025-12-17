@@ -9,7 +9,7 @@ class WebAppStack extends Stack {
     super(scope, id, props);
 
     const instance = new ec2.Instance(this, 'MyWebApp', {
-      instanceType: new ec2.InstanceType('no.such.size'), // <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
+      instanceType: new ec2.InstanceType('m5.xlarge'), // <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
       machineImage: ec2.MachineImage.genericLinux({
         'us-east-1': 'ami-005e54dee72cc1d00',
       }),
@@ -46,6 +46,7 @@ class WebAppStack extends Stack {
       deletionProtection: false,
     });
     Tags.of(db).add('Name', 'my-db');
+    throw new Error("blow up!");
   }
 }
 
