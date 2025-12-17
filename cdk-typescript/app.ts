@@ -7,6 +7,7 @@ import { Construct } from 'constructs';
 class WebAppStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
+    INVALID SYNTAX ERROR
 
     const instance = new ec2.Instance(this, 'MyWebApp', {
       instanceType: new ec2.InstanceType('m5.xlarge'), // <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
