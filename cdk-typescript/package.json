@@ -2,7 +2,7 @@
   "name": "cdk-typescript",
   "version": "0.1.0",
   "dependencies": {
-    "aws-cdk-libtesttesttest2": "2.215.0",
+    "aws-cdk-lib-DOES-NOT-EXIST": "2.215.0",
     "constructs": "^10.0.0"
   },
   "devDependencies": {
