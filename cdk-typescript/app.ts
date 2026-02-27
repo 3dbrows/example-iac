@@ -25,7 +25,7 @@ class WebAppStack extends Stack {
     Tags.of(instance).add('Service', 'web-app');
     Tags.of(instance).add('Name', 'dash');
 
-    const instance = new ec2.Instance(this, 'MyWebApp', { // duplicate of same ID
+    const instance = new ec2.Instance(this, 'MyWebApp2', {
       instanceType: new ec2.InstanceType('m5.2xlarge'), // <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
       machineImage: ec2.MachineImage.genericLinux({
         'us-east-1': 'ami-005e54dee72cc1d00',
