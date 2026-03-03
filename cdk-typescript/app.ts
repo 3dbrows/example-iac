@@ -36,7 +36,7 @@ class WebAppStack extends Stack {
           volume: ec2.BlockDeviceVolume.ebs(1000), // <<<<<<<<<< Try adding volumeType: gp3 to compare costs
         },
       ],
-      vpc: ec2.Vpc.fromLookup(this, 'VPC', { isDefault: true }),
+      vpc: ec2.Vpc.fromLookup(this, 'VPC2', { isDefault: true }),
     });
 
     const fn = new lambda.Function(this, 'MyHelloWorld', {
