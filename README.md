@@ -5,7 +5,7 @@
 Use our [Get Started](https://www.infracost.io/docs) guide and the example projects in this repo to see how Infracost works.
 
 ## Examples
-test test test
+test test test test
 The AWS examples contain an EC2 instance, Lambda function, RDS MySQL database, and EKS cluster.
 
 | IaC Tool | Path |
