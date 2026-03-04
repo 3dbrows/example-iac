@@ -12,7 +12,7 @@ class WebAppStack(Stack):
         instance = ec2.Instance(
             self,
             "MyWebApp",
-            instance_type=ec2.InstanceType("m3.xlarge"),  # <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
+            instance_type=ec2.InstanceType("m5.2xlarge"),  # <<<<<<<<<< Try changing this to m5.xlarge to compare the costs
             machine_image=ec2.MachineImage.generic_linux({
                 "us-east-1": "ami-005e54dee72cc1d00"
             }),
